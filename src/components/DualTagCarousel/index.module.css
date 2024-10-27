@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+}
+
+.common{
+    overflow: hidden;
+    transition: width 1s ease;
+}
+
+.show {
+    width: 50%;
+}
+
+.hide {
+    width: 0;
+}
