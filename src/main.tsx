@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
-import App from './App'
+import { RouterView } from 'oh-router-react'
+import { router } from './router'
 
 createRoot(document.getElementById('root')!).render(
-    <App />
+  <RouterView router={router} />
 )
