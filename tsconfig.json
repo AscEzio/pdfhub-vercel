@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -22,15 +22,28 @@
         "options": {
           "classnameTransform": "camelCaseOnly"
         }
+      },
+      {
+        "name": "next"
       }
-    ]
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
+    "./src/style.d.ts",
     "src",
-    "./src/style.d.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "./index.ts",
+    "./index.ts"
   ]
 }
