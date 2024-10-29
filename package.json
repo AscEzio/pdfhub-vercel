@@ -7,7 +7,8 @@
     "build": "next build",
     "deploy": "firebase deploy",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate && npm run build"
   },
   "dependencies": {
     "classnames": "^2.5.1",
