@@ -1,10 +1,10 @@
-import './globals.css'
+import { FC } from 'react'
 
-export default function RootLayout ({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface IProps {
+  children: React.ReactNode
+}
+
+const RootLayout: FC<IProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
@@ -13,3 +13,5 @@ export default function RootLayout ({
     </html>
   )
 }
+
+export default RootLayout

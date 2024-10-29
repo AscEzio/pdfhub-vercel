@@ -1,7 +1,8 @@
 'use client'
 
 import React, { FC, useState } from 'react'
-import { signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import { signInWithRedirect, getRedirectResult } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 import { next } from '@/components/DualTagCarousel'
 import { firebaseAuth, googleProvider } from '@/firebase/app'
@@ -12,6 +13,7 @@ interface IProps {
 }
 
 const SignInContainer: FC<IProps> = () => {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassWord] = useState('')
 
@@ -31,14 +33,17 @@ const SignInContainer: FC<IProps> = () => {
 
   const handleSignIn = async () => {
     try {
-      const res = await signInWithEmailAndPassword(firebaseAuth, email, password)
+      const resJSON = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+
+      })
+      const res = await resJSON.json()
       console.log('signin res:', res)
-      const userInfo = res.user
-      const accessToken = (await userInfo.getIdTokenResult()).token
-      const refreshToken = userInfo.refreshToken
-      localStorage.setItem('accessToken', accessToken)
-      localStorage.setItem('refreshToken', refreshToken)
-      alert('登录成功')
+      if (res.code === 200) {
+        alert('登录成功')
+        router.push('/home')
+      }
     } catch (err) {
       if ((err instanceof FirebaseError)) {
         console.log('signup err:', err, err.code, err.message)
