@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { signInWithEmailAndPassword, signInWithRedirect } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 import { firebaseAuth } from '@/firebase/app'
 
@@ -36,5 +36,3 @@ export async function POST (request: NextRequest) {
     return response
   }
 }
-
-

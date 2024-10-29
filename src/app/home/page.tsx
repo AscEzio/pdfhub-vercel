@@ -2,7 +2,6 @@
 
 import { FC } from 'react'
 import { useRouter } from 'next/navigation'
-import styles from './page.module.css'
 
 interface IProps {
 }
