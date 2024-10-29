@@ -44,15 +44,15 @@ const SignInContainer: FC<IProps> = () => {
         alert('登录成功')
         router.push('/home')
       }
+      if (res.code === FibaseErrorCode.InvalidCredential) {
+        alert('邮箱或密码错误')
+      }
+      if (res.code === FibaseErrorCode.InvalidEmail) {
+        alert('请输入有效邮箱')
+      }
     } catch (err) {
       if ((err instanceof FirebaseError)) {
         console.log('signup err:', err, err.code, err.message)
-        if (err.code === FibaseErrorCode.InvalidCredential) {
-          alert('邮箱或密码错误')
-        }
-        if (err.code === FibaseErrorCode.InvalidEmail) {
-          alert('请输入有效邮箱')
-        }
       } else {
         console.log('signup err:', err)
       }
