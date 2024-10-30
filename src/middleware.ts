@@ -11,11 +11,19 @@ export function middleware (request: NextRequest) {
   // 登录鉴权
   const accessToken = request.cookies.get('accessToken')
   const refreshToken = request.cookies.get('refreshToken')
-  if (request.nextUrl.pathname !== '/login') {
+  if ((request.nextUrl.pathname !== '/login' && request.nextUrl.pathname !== '/nologin')) {
+    const response = NextResponse.json({
+      accessToken,
+      refreshToken,
+      testField: 'test',
+      request
+    })
+    // return NextResponse.redirect(
+    //   new URL('/nologin', request.url)
+    // )
+    return response
     if ((!accessToken || !refreshToken)) { // 当两个token有一个不存在时
-      return NextResponse.redirect(
-        new URL('/login', request.url)
-      )
+
     }
   }
 
